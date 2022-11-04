@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Vollkorn&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font-family: 'Work Sans', sans-serif;
+  background-color: hsl(235, 24%, 19%);
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 350px;
+  z-index: -1;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+h1,
+h2 {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: normal;
+}
+
+header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  height: 350px;
+}
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  margin: 100px 30px 0 30px;
+}
+
+.create-item {
+  height: 70px;
+  background-color: hsl(235, 24%, 19%);
+  margin-top: 50px;
+  border-radius: 7px;
+  display: flex;
+}
+
+.check {
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid hsl(237, 14%, 26%);
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-mark:hover,
+.check-mark.checked {
+  background: linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
+}
+
+.shopping-item-text.checked {
+  color: hsl(233, 14%, 35%);
+  text-decoration: line-through;
+}
+
+.check-mark img {
+  visibility: hidden;
+}
+
+.check-mark:hover img,
+.check-mark.checked img {
+  visibility: visible;
+}
+
+.item-input {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.item-input form {
+  flex-grow: 1;
+}
+
+.item-input input {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 10px 0;
+  background-color: transparent;
+  color: hsl(234, 39%, 85%);
+  font-size: 18px;
+}
+
+.item-input input::placeholder {
+  color: hsl(233, 14%, 35%);
+}
+
+.shopping-item {
+  width: 100%;
+  color: hsl(234, 39%, 85%);
+  display: flex;
+  height: 70px;
+  border-radius: 7px;
+  border-bottom: 1px solid hsl(237, 14%, 26%);
+  font-size: 18px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  background-color: hsl(235, 24%, 19%);
+}
+
+.shopping-item:hover {
+  transform: translateY(-3px);
+  border-color: black;
+  box-shadow: 0 0px 7px 0px hsl(235, 21%, 11%);
+}
+
+.shopping-item-text {
+  display: flex;
+  align-items: center;
+}
+
+.shopping-list-wrapper {
+  margin-top: 30px;
+  background-color: hsl(235, 24%, 19%);
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.4);
+  margin-bottom: 30px;
+}
+
+.items-info {
+  height: 70px;
+  width: 100%;
+  color: hsl(233, 14%, 35%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+}
+
+.filter span {
+  padding: 0 6px;
+  cursor: pointer;
+}
+
+.filter span:hover,
+.filter span.active,
+.controls:hover {
+  color: hsl(220, 98%, 61%);
+}
+
+.controls {
+  cursor: pointer;
+  text-align: end;
+}
