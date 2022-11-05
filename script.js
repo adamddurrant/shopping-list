@@ -85,4 +85,25 @@ function markCompleted(id) {
   });
 }
 
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ | This doesn't work 🤷‍♂️  | ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+//Remove item from db and page
+function removeItem(id) {
+  let itemForDelete = db.collection('shopping-list').doc(id);
+
+  itemForDelete.get().then(function (doc) {
+    if (doc.exists) {
+      let deleteFilter = doc.data().filter;
+      if (deleteFilter == 'completed') {
+        itemForDelete.delete();
+      } else if (deleteFilter == 'active') {
+        // do nothing
+      }
+    }
+  });
+}
+
+// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ | This doesn't work 🤷‍♂️  | ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+// Refetch items
 getItems();
