@@ -6,6 +6,7 @@ function addItem(event) {
     text: text.value,
     filter: 'active',
   });
+  text.value = '';
 }
 
 // get database list of shopping items
@@ -21,7 +22,7 @@ function getItems() {
     });
     // total number of items count
     let itemCount = items.length;
-    // change count of total items
+    // Add count of total items to total counter
     document.getElementById('total').innerHTML = itemCount;
     generateItems(items);
   });
@@ -45,6 +46,9 @@ function generateItems(items) {
       }">
         ${item.text}
       </div>
+      <div data-id=${item.id} class="delete-item">
+                <img src="images/icon-cross.svg" alt="del-icon"></img>
+                </div>
     </div>`;
   });
   // add in the new HTML block
@@ -53,22 +57,40 @@ function generateItems(items) {
   createEventListeners();
 }
 
-//creates event listeners for each checkmark and runs markCompleted on click
+//creates event listeners for each checkmark, delete button and clear button
 function createEventListeners() {
   let shoppingCheckMarks = document.querySelectorAll(
     '.shopping-list .check .check-mark'
   );
+  let clear = document.querySelector('.clear-complete');
+
   shoppingCheckMarks.forEach((checkMark) => {
     checkMark.addEventListener('click', function () {
       markCompleted(checkMark.dataset.id);
     });
+
+    //create function for clear button & run clearCompleted
+    clear.addEventListener('click', function () {
+      clearCompleted(checkMark.dataset.id);
+    });
   });
+
+  let delItem = document.querySelectorAll('.shopping-item .delete-item');
+  delItem.forEach((del) => {
+    del.addEventListener('click', function () {
+      deleteItem(del.dataset.id);
+    });
+  });
+}
+
+function deleteItem(id) {
+  let del = db.collection('shopping-list').doc(id);
+  del.delete();
 }
 
 // Mark items as completed in database
 function markCompleted(id) {
   let item = db.collection('shopping-list').doc(id);
-
   item.get().then(function (doc) {
     if (doc.exists) {
       let filter = doc.data().filter;
@@ -85,25 +107,19 @@ function markCompleted(id) {
   });
 }
 
-// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ | This doesn't work 🤷‍♂️  | ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+// clear the completed items from firebase
+function clearCompleted(id) {
+  let tb = db.collection('shopping-list').doc(id);
 
-//Remove item from db and page
-function removeItem(id) {
-  let itemForDelete = db.collection('shopping-list').doc(id);
-
-  itemForDelete.get().then(function (doc) {
+  tb.get().then(function (doc) {
     if (doc.exists) {
       let deleteFilter = doc.data().filter;
-      if (deleteFilter == 'completed') {
-        itemForDelete.delete();
-      } else if (deleteFilter == 'active') {
-        // do nothing
+      if (deleteFilter === 'completed') {
+        tb.delete();
       }
     }
   });
 }
-
-// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ | This doesn't work 🤷‍♂️  | ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 // Refetch items
 getItems();

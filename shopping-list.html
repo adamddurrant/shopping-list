@@ -10,32 +10,27 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
     <script src="./firebase.js"></script>
     <script src="./script.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   </head>
 
   <body>
-    <header>
-      <img src="./images/bg-desktop-light.jpg" />
-    </header>
+    <header></header>
 
     <div class="container">
+      <div class="anim-wrapper">
+        <div class="anim"></div>
+      </div>
       <div class="title">
         <h1>Shopping List</h1>
-        <div class="theme">
-          <img src="./images/icon-sun.svg" />
-        </div>
       </div>
 
       <div class="create-item">
         <div class="check">
-          <div class="check-mark"></div>
+          <div class="emoji">👉</div>
         </div>
         <div class="item-input">
           <form onsubmit="addItem(event)">
-            <input
-              id="list-input"
-              type="text"
-              placeholder="Add a new item to the list"
-            />
+            <input id="list-input" type="text" placeholder="Add items..." />
           </form>
         </div>
       </div>
@@ -48,35 +43,15 @@
                 <img src="./images/icon-check.svg" />
               </div>
             </div>
-            <div class="shopping-item-text">onions</div>
-          </div>
-          <div class="shopping-item">
-            <div class="check">
-              <div class="check-mark">
-                <img src="./images/icon-check.svg" />
-              </div>
-            </div>
-            <div class="shopping-item-text">onions</div>
-          </div>
-          <div class="shopping-item">
-            <div class="check">
-              <div class="check-mark">
-                <img src="./images/icon-check.svg" />
-              </div>
-            </div>
-            <div class="shopping-item-text">onions</div>
           </div>
         </div>
 
         <div class="items-info">
           <div class="items-number"><span id="total"></span> items</div>
-          <div class="filter">
-            <span class="active">All</span>
-            <span>Active</span>
-            <span>Completed</span>
-          </div>
           <div class="controls">
-            <span onclick="removeItem(id)">Clear Completed</span>
+            <span class="clear-complete"
+              ><img class="bin" src=/images/bin.svg>Clear Completed</span
+            >
           </div>
         </div>
       </div>

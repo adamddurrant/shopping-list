@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Vollkorn&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
 
 * {
@@ -11,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   font-family: 'Work Sans', sans-serif;
-  background-color: hsl(235, 24%, 19%);
+  background-color: white;
 }
 
 header {
@@ -22,21 +21,47 @@ header {
   width: 100%;
   height: 350px;
   z-index: -1;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .title {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 25px;
 }
 
+.anim-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.anim {
+  width: 100px;
+  height: 100px;
+  background-image: url(/images/food.gif);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 300px 300px;
+}
+
 h1,
 h2 {
-  font-family: 'Vollkorn';
+  font-family: 'Work Sans', sans-serif;
+  font-size: 45px;
   font-style: normal;
   font-weight: normal;
+}
+
+.emoji {
+  font-size: 30px;
+}
+
+header {
+  background-color: #ffcc33;
 }
 
 header img {
@@ -54,7 +79,8 @@ header img {
 
 .create-item {
   height: 70px;
-  background-color: hsl(235, 24%, 19%);
+  background-color: white;
+  border: 2px solid black;
   margin-top: 50px;
   border-radius: 7px;
   display: flex;
@@ -71,7 +97,7 @@ header img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid hsl(237, 14%, 26%);
+  border: 2px solid black;
   cursor: pointer;
   transition: all 0.25s;
   display: flex;
@@ -81,11 +107,11 @@ header img {
 
 .check-mark:hover,
 .check-mark.checked {
-  background: linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
+  background: black;
 }
 
 .shopping-item-text.checked {
-  color: hsl(233, 14%, 35%);
+  color: black;
   text-decoration: line-through;
 }
 
@@ -98,6 +124,24 @@ header img {
   visibility: visible;
 }
 
+.bin {
+  width: 6%;
+  height: auto;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.clear-complete {
+  display: flex;
+  justify-content: flex-end;
+  margin: auto;
+}
+
+.clear-complete:hover .bin {
+  filter: invert(96%) sepia(34%) saturate(6700%) hue-rotate(324deg)
+    brightness(99%) contrast(102%);
+}
+
 .item-input {
   flex-grow: 1;
   display: flex;
@@ -108,13 +152,19 @@ header img {
   flex-grow: 1;
 }
 
+.list-input {
+  font-family: 'Work Sans', sans-serif;
+  color: grey;
+}
+
 .item-input input {
   width: 100%;
   outline: none;
+  font-family: 'Work Sans', sans-serif;
   border: none;
   padding: 10px 0;
   background-color: transparent;
-  color: hsl(234, 39%, 85%);
+  color: black;
   font-size: 18px;
 }
 
@@ -124,21 +174,21 @@ header img {
 
 .shopping-item {
   width: 100%;
-  color: hsl(234, 39%, 85%);
+  color: black;
   display: flex;
   height: 70px;
   border-radius: 7px;
-  border-bottom: 1px solid hsl(237, 14%, 26%);
+  border: 2px solid black;
   font-size: 18px;
   transition: all 0.25s ease;
-  cursor: pointer;
-  background-color: hsl(235, 24%, 19%);
+  background-color: white;
+  margin-bottom: 7px;
+  margin-top: 7px;
 }
 
 .shopping-item:hover {
   transform: translateY(-3px);
   border-color: black;
-  box-shadow: 0 0px 7px 0px hsl(235, 21%, 11%);
 }
 
 .shopping-item-text {
@@ -148,17 +198,18 @@ header img {
 
 .shopping-list-wrapper {
   margin-top: 30px;
-  background-color: hsl(235, 24%, 19%);
+  background-color: transparent;
   border-radius: 7px;
   overflow: hidden;
-  box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.4);
   margin-bottom: 30px;
 }
 
 .items-info {
   height: 70px;
   width: 100%;
-  color: hsl(233, 14%, 35%);
+  color: black;
+  background-color: white;
+  margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -178,10 +229,37 @@ header img {
 .filter span:hover,
 .filter span.active,
 .controls:hover {
-  color: hsl(220, 98%, 61%);
+  color: #ffcc33;
 }
 
 .controls {
   cursor: pointer;
   text-align: end;
+  display: flex;
+  justify-content: center;
+}
+
+.delete-item {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.delete-item img {
+  width: 70%;
+  margin-right: 30px;
+}
+
+.delete-item:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .items-info {
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  .clear-complete {
+    justify-content: center;
+  }
 }
