@@ -38,7 +38,7 @@ function generateItems(items) {
         <div data-id="${item.id}" class="check-mark ${
       item.filter == 'completed' ? 'checked' : ''
     }">
-          <img src="./images/icon-check.svg" />
+          <img src="/images/shopping-list/icon-check.svg" />
         </div>
       </div>
       <div class="shopping-item-text ${
@@ -47,7 +47,7 @@ function generateItems(items) {
         ${item.text}
       </div>
       <div data-id=${item.id} class="delete-item">
-                <img src="images/icon-cross.svg" alt="del-icon"></img>
+                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon"></img>
                 </div>
     </div>`;
   });
