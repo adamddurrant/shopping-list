@@ -327,13 +327,28 @@ h2 {
   font-size: 18px;
 }
 
+.date-select {
+  margin-top: 15px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.date-select button {
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 6px;
+  flex-grow: 1;
+}
+
+
 .accordion.active {
   background-color: #ccc;
 }
 
 .accordion:after {
   content: '\002B';
-  color: #777;
+  color: black;
   font-weight: bold;
   float: right;
   margin-left: 5px;
