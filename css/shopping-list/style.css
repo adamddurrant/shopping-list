@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
 
+
+@font-face {
+  font-family: "Geist Sans";
+  font-weight: 400;
+  src: url("/fonts/Geist-Regular.woff2") format("woff2"),
+}
+
+@font-face {
+  font-family: "Geist Sans";
+  font-weight: 500;
+  src: url("/fonts/Geist-Medium.woff2") format("woff2"),
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +22,7 @@
 body {
   display: flex;
   justify-content: center;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Geist Sans', sans-serif;
   background-color: white;
 }
 
@@ -71,10 +84,10 @@ body {
 h1,
 h2 {
   margin: 20px 0px!important;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Geist Sans', sans-serif;
   font-size: 45px;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500!important;
 }
 
 .emoji {
@@ -184,14 +197,14 @@ h2 {
 }
 
 .list-input {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Geist Sans', sans-serif;
   color: grey;
 }
 
 .item-input input {
   width: 100%;
   outline: none;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Geist Sans', sans-serif;
   border: none;
   padding: 10px 0;
   background-color: transparent;
@@ -332,6 +345,21 @@ h2 {
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.date-wrapper {
+  display: none;
+}
+
+.date-wrapper.active {
+  display: block;
+}
+
+.date-text {
+  text-align: center;
+  font-size: 20px;
+  margin: 20px 0;
 }
 
 .date-select button {
@@ -340,7 +368,6 @@ h2 {
   border-radius: 6px;
   flex-grow: 1;
 }
-
 
 .accordion.active {
   background-color: #ccc;

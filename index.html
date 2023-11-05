@@ -15,6 +15,7 @@
     <script src="/js/shopping-list/firebase.js"></script>
     <script src="/js/shopping-list/script.js"></script>
     <script src="/js/shopping-list/accordion.js"></script>
+    <script src="/js/shopping-list/dates.js"></script>
 </head>
 
 <body>
@@ -92,19 +93,25 @@
                     </div>
                     <div class="item-input">
                         <form onsubmit="addItem(event)">
-                            <input id="list-input" type="text" class="browser-default" placeholder="Add meals...">
+                            <input id="meals-input" type="text" class="browser-default" placeholder="Add meals..." oninput=handleInput(this.value)>
                         </form>
                     </div>
                 </div>
 
-                <div class="date-select">
-                    <button class="date browser-default">Mon</button>
-                    <button class="date browser-default">Tue</button>
-                    <button class="date browser-default">Wed</button>
-                    <button class="date browser-default">Thur</button>
-                    <button class="date browser-default">Fri</button>
-                    <button class="date browser-default">Sat</button>
-                    <button class="date browser-default">Sun</button>
+                <div id="date-wrap" class="date-wrapper">
+                    <h4 class="date-text">
+                        Select day to submit...
+                    </h4>
+                    <div class="date-select">
+                        <button class="date browser-default">Mon</button>
+                        <button class="date browser-default">Tue</button>
+                        <button class="date browser-default">Wed</button>
+                        <button class="date browser-default">Thur</button>
+                        <button class="date browser-default">Fri</button>
+                        <button class="date browser-default">Sat</button>
+                        <button class="date browser-default">Sun</button>
+                    </div>
+    
                 </div>
 
                 <div class="shopping-list-wrapper">
@@ -145,6 +152,7 @@
 
     </div>
     <script>
+        // Init swipeable tabs
         document.addEventListener('DOMContentLoaded', function () {
             var tabs = document.querySelector('.tabs');
             M.Tabs.init(tabs, {

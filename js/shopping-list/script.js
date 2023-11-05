@@ -12,7 +12,6 @@ function addItem(event) {
 // get database list of shopping items
 function getItems() {
   db.collection('shopping-list').onSnapshot((snapshot) => {
-    console.log(snapshot);
     let items = [];
     snapshot.docs.forEach((doc) => {
       items.push({
@@ -51,6 +50,7 @@ function generateItems(items) {
                 </div>
     </div>`;
   });
+
   // add in the new HTML block
   document.querySelector('.shopping-list').innerHTML = itemsHTML;
   //call event listener function
