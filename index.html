@@ -14,24 +14,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
     <script src="/js/shopping-list/firebase.js"></script>
     <script src="/js/shopping-list/script.js"></script>
-    <style type="text/css">
-        @font-face {
-            font-weight: 400;
-            font-style: normal;
-            font-family: circular;
-
-            src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Book.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-weight: 700;
-            font-style: normal;
-            font-family: circular;
-
-            src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Bold.woff2') format('woff2');
-        }
-    </style>
-    <script src="https://www.googletagmanager.com/gtag/js?l=dataLayer&amp;id=G-S1R4PX27JD" async=""></script>
+    <script src="/js/shopping-list/accordion.js"></script>
 </head>
 
 <body>
@@ -56,151 +39,163 @@
             </div>
         </div>
 
-        <div class="shopping-list-wrapper">
-            <div class="shopping-list">
-                <div class="shopping-item">
-                    <div class="check">
-                        <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
-                            <img src="/images/shopping-list/icon-check.svg">
+        <button class="accordion">Shopping list</button>
+        <div class="panel">
+            <div class="shopping-list-wrapper">
+                <div class="shopping-list">
+                    <div class="shopping-item">
+                        <div class="check">
+                            <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
+                                <img src="/images/shopping-list/icon-check.svg">
+                            </div>
+                        </div>
+                        <div class="shopping-item-text ">
+                            Nail polish
+                        </div>
+                        <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
+                            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                         </div>
                     </div>
-                    <div class="shopping-item-text ">
-                        Nail polish
-                    </div>
-                    <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
-                        <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                    </div>
-                </div>
-                <div class="shopping-item">
-                    <div class="check">
-                        <div data-id="61UnJVr1p1zu2GrRlrBS" class="check-mark ">
-                            <img src="/images/shopping-list/icon-check.svg">
+                    <div class="shopping-item">
+                        <div class="check">
+                            <div data-id="61UnJVr1p1zu2GrRlrBS" class="check-mark ">
+                                <img src="/images/shopping-list/icon-check.svg">
+                            </div>
+                        </div>
+                        <div class="shopping-item-text ">
+                            Parcels
+                        </div>
+                        <div data-id="61UnJVr1p1zu2GrRlrBS" class="delete-item">
+                            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                         </div>
                     </div>
-                    <div class="shopping-item-text ">
-                        Parcels
-                    </div>
-                    <div data-id="61UnJVr1p1zu2GrRlrBS" class="delete-item">
-                        <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                    </div>
-                </div>
-                <div class="shopping-item">
-                    <div class="check">
-                        <div data-id="8iXrhteH4iLNC4PBRLVh" class="check-mark ">
-                            <img src="/images/shopping-list/icon-check.svg">
+                    <div class="shopping-item">
+                        <div class="check">
+                            <div data-id="8iXrhteH4iLNC4PBRLVh" class="check-mark ">
+                                <img src="/images/shopping-list/icon-check.svg">
+                            </div>
+                        </div>
+                        <div class="shopping-item-text ">
+                            Chocolate chip
+                        </div>
+                        <div data-id="8iXrhteH4iLNC4PBRLVh" class="delete-item">
+                            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                         </div>
                     </div>
-                    <div class="shopping-item-text ">
-                        Chocolate chip
-                    </div>
-                    <div data-id="8iXrhteH4iLNC4PBRLVh" class="delete-item">
-                        <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                    </div>
-                </div>
-                <div class="shopping-item">
-                    <div class="check">
-                        <div data-id="9EgyImucFUqUWyuXUOgP" class="check-mark ">
-                            <img src="/images/shopping-list/icon-check.svg">
+                    <div class="shopping-item">
+                        <div class="check">
+                            <div data-id="9EgyImucFUqUWyuXUOgP" class="check-mark ">
+                                <img src="/images/shopping-list/icon-check.svg">
+                            </div>
+                        </div>
+                        <div class="shopping-item-text ">
+                            Chocolate chinks
+                        </div>
+                        <div data-id="9EgyImucFUqUWyuXUOgP" class="delete-item">
+                            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                         </div>
                     </div>
-                    <div class="shopping-item-text ">
-                        Chocolate chinks
-                    </div>
-                    <div data-id="9EgyImucFUqUWyuXUOgP" class="delete-item">
-                        <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                    </div>
-                </div>
-                <div class="shopping-item">
-                    <div class="check">
-                        <div data-id="ZJKdbsmTPXPlnvRuOWsn" class="check-mark ">
-                            <img src="/images/shopping-list/icon-check.svg">
+                    <div class="shopping-item">
+                        <div class="check">
+                            <div data-id="ZJKdbsmTPXPlnvRuOWsn" class="check-mark ">
+                                <img src="/images/shopping-list/icon-check.svg">
+                            </div>
+                        </div>
+                        <div class="shopping-item-text ">
+                            Buttevanilla essence
+                        </div>
+                        <div data-id="ZJKdbsmTPXPlnvRuOWsn" class="delete-item">
+                            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                         </div>
                     </div>
-                    <div class="shopping-item-text ">
-                        Buttevanilla essence
-                    </div>
-                    <div data-id="ZJKdbsmTPXPlnvRuOWsn" class="delete-item">
-                        <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                    </div>
-                </div>
-                <div class="shopping-item">
-                    <div class="check">
-                        <div data-id="e4yVpCYZthmTIxLkiVqp" class="check-mark ">
-                            <img src="/images/shopping-list/icon-check.svg">
+                    <div class="shopping-item">
+                        <div class="check">
+                            <div data-id="e4yVpCYZthmTIxLkiVqp" class="check-mark ">
+                                <img src="/images/shopping-list/icon-check.svg">
+                            </div>
+                        </div>
+                        <div class="shopping-item-text ">
+                            Plain flour
+                        </div>
+                        <div data-id="e4yVpCYZthmTIxLkiVqp" class="delete-item">
+                            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                         </div>
                     </div>
-                    <div class="shopping-item-text ">
-                        Plain flour
-                    </div>
-                    <div data-id="e4yVpCYZthmTIxLkiVqp" class="delete-item">
-                        <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                    </div>
-                </div>
-                <div class="shopping-item">
-                    <div class="check">
-                        <div data-id="j2gynRCrBKeXXt3DIqrT" class="check-mark ">
-                            <img src="/images/shopping-list/icon-check.svg">
+                    <div class="shopping-item">
+                        <div class="check">
+                            <div data-id="j2gynRCrBKeXXt3DIqrT" class="check-mark ">
+                                <img src="/images/shopping-list/icon-check.svg">
+                            </div>
+                        </div>
+                        <div class="shopping-item-text ">
+                            Wastepaper bin
+                        </div>
+                        <div data-id="j2gynRCrBKeXXt3DIqrT" class="delete-item">
+                            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                         </div>
                     </div>
-                    <div class="shopping-item-text ">
-                        Wastepaper bin
-                    </div>
-                    <div data-id="j2gynRCrBKeXXt3DIqrT" class="delete-item">
-                        <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                    </div>
-                </div>
-                <div class="shopping-item">
-                    <div class="check">
-                        <div data-id="mNVzUnEs5KO5Zia5otjw" class="check-mark ">
-                            <img src="/images/shopping-list/icon-check.svg">
+                    <div class="shopping-item">
+                        <div class="check">
+                            <div data-id="mNVzUnEs5KO5Zia5otjw" class="check-mark ">
+                                <img src="/images/shopping-list/icon-check.svg">
+                            </div>
+                        </div>
+                        <div class="shopping-item-text ">
+                            Boot slippers
+                        </div>
+                        <div data-id="mNVzUnEs5KO5Zia5otjw" class="delete-item">
+                            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                         </div>
                     </div>
-                    <div class="shopping-item-text ">
-                        Boot slippers
-                    </div>
-                    <div data-id="mNVzUnEs5KO5Zia5otjw" class="delete-item">
-                        <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                    </div>
-                </div>
-                <div class="shopping-item">
-                    <div class="check">
-                        <div data-id="uNr3yHXdY1f8MOjel6tp" class="check-mark checked">
-                            <img src="/images/shopping-list/icon-check.svg">
+                    <div class="shopping-item">
+                        <div class="check">
+                            <div data-id="uNr3yHXdY1f8MOjel6tp" class="check-mark checked">
+                                <img src="/images/shopping-list/icon-check.svg">
+                            </div>
+                        </div>
+                        <div class="shopping-item-text checked">
+                            Chives
+                        </div>
+                        <div data-id="uNr3yHXdY1f8MOjel6tp" class="delete-item">
+                            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                         </div>
                     </div>
-                    <div class="shopping-item-text checked">
-                        Chives
-                    </div>
-                    <div data-id="uNr3yHXdY1f8MOjel6tp" class="delete-item">
-                        <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                    </div>
-                </div>
-                <div class="shopping-item">
-                    <div class="check">
-                        <div data-id="wFO7GaZBxqimhEO8LMBe" class="check-mark ">
-                            <img src="/images/shopping-list/icon-check.svg">
+                    <div class="shopping-item">
+                        <div class="check">
+                            <div data-id="wFO7GaZBxqimhEO8LMBe" class="check-mark ">
+                                <img src="/images/shopping-list/icon-check.svg">
+                            </div>
+                        </div>
+                        <div class="shopping-item-text ">
+                            Horrible histories books
+                        </div>
+                        <div data-id="wFO7GaZBxqimhEO8LMBe" class="delete-item">
+                            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                         </div>
                     </div>
-                    <div class="shopping-item-text ">
-                        Horrible histories books
-                    </div>
-                    <div data-id="wFO7GaZBxqimhEO8LMBe" class="delete-item">
-                        <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                    </div>
                 </div>
-            </div>
 
-            <div class="items-info">
-                <div class="items-number"><span id="total">10</span> items</div>
-                <div class="controls">
-                    <span class="clear-complete"><img class="bin" src="/images/shopping-list/bin.svg">Clear
-                        Completed</span>
+                <div class="items-info">
+                    <div class="items-number"><span id="total">10</span> items</div>
+                    <div class="controls">
+                        <span class="clear-complete"><img class="bin" src="/images/shopping-list/bin.svg">Clear
+                            Completed</span>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        <button class="accordion">Meals list</button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit amet, cons ectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</p>
+        </div>
+
+
+
     </div>
-
-
 </body>
 
 </html>
