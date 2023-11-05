@@ -13,17 +13,27 @@ body {
   background-color: white;
 }
 
-header {
+.shopping-header,
+.meals-header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  height: 350px;
+  height: 315px;
   z-index: -1;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
+
+#tabs-swipe {
+  display: none;
+}
+
+.tabs-content {
+  height: 100vh !important;
+}
+
 .title {
   display: flex;
   justify-content: center;
@@ -37,9 +47,10 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }
 
-.anim {
+.anim-shopping {
   width: 100px;
   height: 100px;
   background-image: url(/images/shopping-list/food.gif);
@@ -48,8 +59,18 @@ header {
   background-size: 300px 300px;
 }
 
+.anim-meals {
+  width: 100px;
+  height: 100px;
+  background-image: url(/images/shopping-list/meals-list.gif);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 300px 300px;
+}
+
 h1,
 h2 {
+  margin: 20px 0px!important;
   font-family: 'Work Sans', sans-serif;
   font-size: 45px;
   font-style: normal;
@@ -60,15 +81,26 @@ h2 {
   font-size: 30px;
 }
 
-header {
+.shopping-header {
   background-color: #ffcc33;
 }
 
-header img {
+.meals-header {
+  background-color: #33b8ff;
+}
+
+.shopping-header img,
+.meals-header img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   height: 350px;
+}
+
+.main-wrapper {
+  width: 100%;
+  max-width: 630px;
+  margin: 0 auto
 }
 
 .container {
@@ -138,8 +170,7 @@ header img {
 }
 
 .clear-complete:hover .bin {
-  filter: invert(96%) sepia(34%) saturate(6700%) hue-rotate(324deg)
-    brightness(99%) contrast(102%);
+  filter: invert(96%) sepia(34%) saturate(6700%) hue-rotate(324deg) brightness(99%) contrast(102%);
 }
 
 .item-input {
@@ -197,11 +228,11 @@ header img {
 }
 
 .shopping-list-wrapper {
-  margin-top: 30px;
+  margin-top: 10px;
   background-color: transparent;
   border-radius: 7px;
   overflow: hidden;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .items-info {
@@ -255,25 +286,40 @@ header img {
 }
 
 @media (max-width: 480px) {
+
   .items-info {
     flex-direction: column;
     margin-top: 50px;
   }
+
   .clear-complete {
     justify-content: center;
   }
+
+  h1 {
+    font-size: 45px !important;
+  }
+
+  .shopping-header,
+  .meals-header {
+    height: 300px;
+  }
+}
+
+.carousel .carousel-item {
+  width: 100%;
 }
 
 
 .accordion {
   margin: 20px auto;
-  background-color: transparent;
+  background-color: transparent!important;
   border: 2px solid black;
   border-radius: 7px;
   color: black;
   cursor: pointer;
   padding: 18px;
-  width: 90%;
+  width: 100%;
   text-align: left;
   outline: none;
   font-size: 15px;
@@ -281,7 +327,7 @@ header img {
   font-size: 18px;
 }
 
-.active, .accordion:hover {
+.accordion.active {
   background-color: #ccc;
 }
 
@@ -293,7 +339,7 @@ header img {
   margin-left: 5px;
 }
 
-.active:after {
+.accordion.active:after {
   content: "\2212";
 }
 
