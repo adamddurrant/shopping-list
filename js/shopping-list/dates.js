@@ -1,12 +1,25 @@
-// const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-// const today = new Date();
-// const dayOfWeek = today.getDay(); // 0 for Sunday, 1 for Monday, etc.
+// Reorder buttons and accordions based on date
+document.addEventListener("DOMContentLoaded", function () {
 
-// const todayName = daysOfWeek[dayOfWeek];
-// console.log(`Today is: ${todayName}`);
+  const today = new Date().getDay(); // 0 (Sunday) to 6 (Saturday)
+  const dateSelect = document.getElementById('dateSelect');
+  const mealsList = document.querySelector('.meals-list');
 
+  for (let i = 0; i < today - 1; i++) {
+    dateSelect.appendChild(dateSelect.firstElementChild);
+  }
+
+  for (let i = 0; i < today - 1; i++) {
+    mealsList.appendChild(mealsList.children[0]);
+    mealsList.appendChild(mealsList.children[0]);
+  }
+
+});
+
+
+// Hide and show the day buttons
 function handleInput(inputValue) {
-  // Perform your action with the input value
+
   const dateWrapper = document.getElementById('date-wrap');
   const reset = document.getElementById('reset-meals');
 
@@ -16,7 +29,7 @@ function handleInput(inputValue) {
     dateWrapper.classList.add('active');
   }
 
-  reset.addEventListener("click", function(){
+  reset.addEventListener("click", function () {
     dateWrapper.classList.remove('active');
   });
 

@@ -16,7 +16,6 @@
     <script src="/js/shopping-list/script.js"></script>
     <script src="/js/shopping-list/accordion.js"></script>
     <script src="/js/shopping-list/dates.js"></script>
-    <script src="/js/shopping-list/reset.js"></script>
 </head>
 
 <body>
@@ -106,11 +105,11 @@
                     <h4 class="date-text">
                         Select day to submit...
                     </h4>
-                    <div class="date-select">
+                    <div class="date-select" id="dateSelect">
                         <button class="date browser-default">Mon</button>
                         <button class="date browser-default">Tue</button>
                         <button class="date browser-default">Wed</button>
-                        <button class="date browser-default">Thur</button>
+                        <button class="date browser-default">Thu</button>
                         <button class="date browser-default">Fri</button>
                         <button class="date browser-default">Sat</button>
                         <button class="date browser-default">Sun</button>
@@ -119,7 +118,7 @@
                 </div>
 
                 <div class="meals-list-wrapper">
-                    <div class="shopping-list">
+                    <div class="shopping-list meals-list">
 
                         <button class="accordion browser-default">Monday</button>
                         <div class="panel">
@@ -239,7 +238,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="items-info">

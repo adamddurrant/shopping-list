@@ -375,9 +375,11 @@ h2 {
 .date-select {
   margin-top: 15px;
   display: flex;
-  gap: 5px;
+  gap: 1rem;
   flex-wrap: wrap;
   flex-grow: 1;
+  padding-bottom: 20px;
+  border-bottom: 1px solid black;
 }
 
 .date-wrapper {
@@ -399,6 +401,12 @@ h2 {
   padding: 10px;
   border-radius: 6px;
   flex-grow: 1;
+  background-color: transparent;
+  flex-basis: 25%;
+}
+
+.date-select button:focus {
+  background-color: transparent;
 }
 
 .accordion.active {
