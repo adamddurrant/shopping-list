@@ -16,6 +16,7 @@
     <script src="/js/shopping-list/script.js"></script>
     <script src="/js/shopping-list/accordion.js"></script>
     <script src="/js/shopping-list/dates.js"></script>
+    <script src="/js/shopping-list/reset.js"></script>
 </head>
 
 <body>
@@ -40,8 +41,9 @@
                     <div class="emoji">👉</div>
                 </div>
                 <div class="item-input">
-                    <form onsubmit="addItem(event)">
+                    <form id="shopping-form" onsubmit="addItem(event)">
                         <input id="list-input" type="text" class="browser-default" placeholder="Add items...">
+                        <button id="reset" type="reset" class="reset-button browser-default">Clear</button>
                     </form>
                 </div>
             </div>
@@ -93,7 +95,9 @@
                     </div>
                     <div class="item-input">
                         <form onsubmit="addItem(event)">
-                            <input id="meals-input" type="text" class="browser-default" placeholder="Add meals..." oninput=handleInput(this.value)>
+                            <input id="meals-input" type="text" class="browser-default" placeholder="Add meals..."
+                                oninput=handleInput(this.value)>
+                            <button id="reset-meals" type="reset" class="reset-button browser-default">Clear</button>
                         </form>
                     </div>
                 </div>
@@ -111,7 +115,7 @@
                         <button class="date browser-default">Sat</button>
                         <button class="date browser-default">Sun</button>
                     </div>
-    
+
                 </div>
 
                 <div class="meals-list-wrapper">
@@ -119,121 +123,121 @@
 
                         <button class="accordion browser-default">Monday</button>
                         <div class="panel">
-                        <div class="shopping-item">
-                            <div class="check">
-                                <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
-                                    <img src="/images/shopping-list/icon-check.svg">
+                            <div class="shopping-item">
+                                <div class="check">
+                                    <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
+                                        <img src="/images/shopping-list/icon-check.svg">
+                                    </div>
+                                </div>
+                                <div class="shopping-item-text ">
+                                    Nail polish
+                                </div>
+                                <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
+                                    <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                                 </div>
                             </div>
-                            <div class="shopping-item-text ">
-                                Nail polish
-                            </div>
-                            <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
-                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                            </div>
-                        </div>
                         </div>
 
                         <button class="accordion browser-default">Tuesday</button>
                         <div class="panel">
-                        <div class="shopping-item">
-                            <div class="check">
-                                <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
-                                    <img src="/images/shopping-list/icon-check.svg">
+                            <div class="shopping-item">
+                                <div class="check">
+                                    <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
+                                        <img src="/images/shopping-list/icon-check.svg">
+                                    </div>
+                                </div>
+                                <div class="shopping-item-text ">
+                                    Nail polish
+                                </div>
+                                <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
+                                    <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                                 </div>
                             </div>
-                            <div class="shopping-item-text ">
-                                Nail polish
-                            </div>
-                            <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
-                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                            </div>
-                        </div>
                         </div>
 
                         <button class="accordion browser-default">Wednesday</button>
                         <div class="panel">
-                        <div class="shopping-item">
-                            <div class="check">
-                                <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
-                                    <img src="/images/shopping-list/icon-check.svg">
+                            <div class="shopping-item">
+                                <div class="check">
+                                    <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
+                                        <img src="/images/shopping-list/icon-check.svg">
+                                    </div>
+                                </div>
+                                <div class="shopping-item-text ">
+                                    Nail polish
+                                </div>
+                                <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
+                                    <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                                 </div>
                             </div>
-                            <div class="shopping-item-text ">
-                                Nail polish
-                            </div>
-                            <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
-                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                            </div>
-                        </div>
                         </div>
 
                         <button class="accordion browser-default">Thursday</button>
                         <div class="panel">
-                        <div class="shopping-item">
-                            <div class="check">
-                                <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
-                                    <img src="/images/shopping-list/icon-check.svg">
+                            <div class="shopping-item">
+                                <div class="check">
+                                    <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
+                                        <img src="/images/shopping-list/icon-check.svg">
+                                    </div>
+                                </div>
+                                <div class="shopping-item-text ">
+                                    Nail polish
+                                </div>
+                                <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
+                                    <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                                 </div>
                             </div>
-                            <div class="shopping-item-text ">
-                                Nail polish
-                            </div>
-                            <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
-                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                            </div>
-                        </div>
                         </div>
 
                         <button class="accordion browser-default">Friday</button>
                         <div class="panel">
-                        <div class="shopping-item">
-                            <div class="check">
-                                <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
-                                    <img src="/images/shopping-list/icon-check.svg">
+                            <div class="shopping-item">
+                                <div class="check">
+                                    <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
+                                        <img src="/images/shopping-list/icon-check.svg">
+                                    </div>
+                                </div>
+                                <div class="shopping-item-text ">
+                                    Nail polish
+                                </div>
+                                <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
+                                    <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                                 </div>
                             </div>
-                            <div class="shopping-item-text ">
-                                Nail polish
-                            </div>
-                            <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
-                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                            </div>
-                        </div>
                         </div>
 
                         <button class="accordion browser-default">Saturday</button>
                         <div class="panel">
-                        <div class="shopping-item">
-                            <div class="check">
-                                <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
-                                    <img src="/images/shopping-list/icon-check.svg">
+                            <div class="shopping-item">
+                                <div class="check">
+                                    <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
+                                        <img src="/images/shopping-list/icon-check.svg">
+                                    </div>
+                                </div>
+                                <div class="shopping-item-text ">
+                                    Nail polish
+                                </div>
+                                <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
+                                    <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                                 </div>
                             </div>
-                            <div class="shopping-item-text ">
-                                Nail polish
-                            </div>
-                            <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
-                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                            </div>
-                        </div>
                         </div>
 
                         <button class="accordion browser-default">Sunday</button>
                         <div class="panel">
-                        <div class="shopping-item">
-                            <div class="check">
-                                <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
-                                    <img src="/images/shopping-list/icon-check.svg">
+                            <div class="shopping-item">
+                                <div class="check">
+                                    <div data-id="57GyKmlSAYA8FbziVjOi" class="check-mark ">
+                                        <img src="/images/shopping-list/icon-check.svg">
+                                    </div>
+                                </div>
+                                <div class="shopping-item-text ">
+                                    Nail polish
+                                </div>
+                                <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
+                                    <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
                                 </div>
                             </div>
-                            <div class="shopping-item-text ">
-                                Nail polish
-                            </div>
-                            <div data-id="57GyKmlSAYA8FbziVjOi" class="delete-item">
-                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
-                            </div>
-                        </div>
                         </div>
 
                     </div>

@@ -192,7 +192,29 @@ h2 {
 
 .item-input form {
   flex-grow: 1;
+  display: flex;
+  position: relative;
 }
+
+.item-input form .reset-button {
+  margin-right: 26px;
+  width: 24px;
+  top: 8px;
+  right: 0;
+  bottom: 0;
+  height: 24px;
+  font-size: 0;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjUgMiAyIDYuNSAyIDEyczQuNSAxMCAxMCAxMCAxMC00LjUgMTAtMTBTMTcuNSAyIDEyIDJ6bTQuOSAxMy41bC0xLjQgMS40LTMuNS0zLjUtMy41IDMuNS0xLjQtMS40IDMuNS0zLjUtMy41LTMuNSAxLjQtMS40IDMuNSAzLjUgMy41LTMuNSAxLjQgMS40LTMuNSAzLjUgMy41IDMuNXoiLz48L3N2Zz4=);
+  background-color: transparent;
+  border: 0;
+  background-repeat: no-repeat;
+  opacity: .2;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 3;
+  position: absolute;
+}
+
 
 .list-input {
   font-family: 'Geist Sans', sans-serif;
@@ -389,6 +411,7 @@ h2 {
   font-weight: bold;
   float: right;
   margin-left: 5px;
+  margin-right: 15px;
 }
 
 .accordion.active:after {
