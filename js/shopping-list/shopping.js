@@ -1,3 +1,6 @@
+// Fetch items
+getItems();
+
 //shoot items into firebase on form submit
 function addItem(event) {
   event.preventDefault();
@@ -120,6 +123,3 @@ function clearCompleted(id) {
     }
   });
 }
-
-// Refetch items
-getItems();
