@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Form</title>
+</head>
+<body>
+
+    <form id="myForm">
+        <label for="dataInput">Enter Data:</label>
+        <input type="text" id="dataInput" required>
+
+        <button type="button" onclick="submitData('Monday')">Monday</button>
+        <button type="button" onclick="submitData('Tuesday')">Tuesday</button>
+        <!-- Add buttons for other days as needed -->
+    </form>
+
+    <!-- Include Firebase SDK (replace with your own configuration) -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"></script>
+
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Get a reference to the Firestore database
+        const db = firebase.firestore();
+
+        // Function to submit data to Firebase
+        function submitData(day) {
+            const inputData = document.getElementById('dataInput').value;
+
+            // Add data to the Firestore collection based on the selected day
+            db.collection(day).add({
+                data: inputData,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+                alert('Data submitted successfully!');
+                document.getElementById('dataInput').value = ''; // Clear the input field
+            })
+            .catch((error) => {
+                console.error('Error submitting data: ', error);
+            });
+        }
+    </script>
+
+</body>
+</html>

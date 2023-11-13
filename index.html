@@ -13,18 +13,20 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
     <script src="/js/shopping-list/firebase.js"></script>
-    <script src="/js/shopping-list/script.js"></script>
+    <script src="/js/shopping-list/shopping.js"></script>
     <script src="/js/shopping-list/accordion.js"></script>
     <script src="/js/shopping-list/dates.js"></script>
 </head>
 
 <body>
 
+    <!-- Tabs -->
     <ul id="tabs-swipe" class="tabs">
         <li class="tab col s3"><a class="active" href="#shopping">Shopping</a></li>
         <li class="tab col s3"><a href="#meals">Meals</a></li>
     </ul>
 
+    <!-- Shopping screen -->
     <div id="shopping" class="col s12">
         <header class="shopping-header"></header>
         <div class="container">
@@ -76,6 +78,7 @@
 
         </div>
 
+        <!-- Meals screen -->
 
         <div id="meals" class="col s12">
 
@@ -106,13 +109,13 @@
                         Select day to submit...
                     </h4>
                     <div class="date-select" id="dateSelect">
-                        <button class="date browser-default">Mon</button>
-                        <button class="date browser-default">Tue</button>
-                        <button class="date browser-default">Wed</button>
-                        <button class="date browser-default">Thu</button>
-                        <button class="date browser-default">Fri</button>
-                        <button class="date browser-default">Sat</button>
-                        <button class="date browser-default">Sun</button>
+                        <button class="date browser-default" onclick="submitData('Monday')">Mon</button>
+                        <button class="date browser-default" onclick="submitData('Tuesday')">Tue</button>
+                        <button class="date browser-default" onclick="submitData('Wednesday')">Wed</button>
+                        <button class="date browser-default" onclick="submitData('Thursday')">Thu</button>
+                        <button class="date browser-default" onclick="submitData('Friday')">Fri</button>
+                        <button class="date browser-default" onclick="submitData('Saturday')">Sat</button>
+                        <button class="date browser-default" onclick="submitData('Sunday')">Sun</button>
                     </div>
 
                 </div>
