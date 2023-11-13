@@ -97,9 +97,9 @@
                         <div class="emoji">👉</div>
                     </div>
                     <div class="item-input">
-                        <form>
+                        <form id="meals-form" onsubmit="event.preventDefault();">
                             <input id="meals-input" type="text" class="browser-default" placeholder="Add meals..."
-                                oninput=handleInput(this.value)>
+                             oninput=handleInput(this.value)>
                             <button id="reset-meals" type="reset" class="reset-button browser-default">Clear</button>
                         </form>
                     </div>

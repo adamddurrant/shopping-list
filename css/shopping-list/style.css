@@ -411,6 +411,7 @@ h2 {
 
 .accordion.active {
   background-color: #ccc;
+  margin-bottom: 0px;
 }
 
 .accordion:after {
