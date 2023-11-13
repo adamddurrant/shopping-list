@@ -14,6 +14,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
     <script src="/js/shopping-list/firebase.js"></script>
     <script src="/js/shopping-list/shopping.js"></script>
+    <script src="/js/shopping-list/meals.js"></script>
     <script src="/js/shopping-list/accordion.js"></script>
     <script src="/js/shopping-list/dates.js"></script>
 </head>
@@ -96,7 +97,7 @@
                         <div class="emoji">👉</div>
                     </div>
                     <div class="item-input">
-                        <form onsubmit="addItem(event)">
+                        <form>
                             <input id="meals-input" type="text" class="browser-default" placeholder="Add meals..."
                                 oninput=handleInput(this.value)>
                             <button id="reset-meals" type="reset" class="reset-button browser-default">Clear</button>

@@ -1,4 +1,4 @@
-// Reorder buttons and accordions based on date
+// Reorder buttons and accordions based on current date
 document.addEventListener("DOMContentLoaded", function () {
 
   const today = new Date().getDay(); // 0 (Sunday) to 6 (Saturday)
@@ -16,8 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
-// Hide and show the day buttons
+// Hide and show the day buttons after input
 function handleInput(inputValue) {
 
   const dateWrapper = document.getElementById('date-wrap');
