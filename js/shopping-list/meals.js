@@ -33,21 +33,31 @@ function getMeals() {
     });
     // total number of items count
     let itemCount = mealItems.length;
+
     // Add count of total items to total counter
     document.getElementById('meals-total').innerHTML = itemCount;
+
     generateMeals(mealItems);
   });
 }
 
 // take the data from getItems and add new HTML block
 function generateMeals(meals) {
-  let mondayHTML = '';
-  let tuesdayHTML = '';
-  let wednesdayHTML = '';
-  let thursdayHTML = '';
-  let fridayHTML = '';
-  let saturdayHTML = '';
-  let sundayHTML = '';
+
+  const emptyHTML = `
+    <div class="meals-item">
+      <div class="shopping-item-text empty-meal">
+        No meals :(
+      </div>
+    </div>`;
+
+  let mondayHTML = emptyHTML;
+  let tuesdayHTML = emptyHTML;
+  let wednesdayHTML = emptyHTML;
+  let thursdayHTML = emptyHTML;
+  let fridayHTML = emptyHTML;
+  let saturdayHTML = emptyHTML;
+  let sundayHTML = emptyHTML;
 
   meals.forEach((meal) => {
     const mealHTML = `
@@ -66,20 +76,21 @@ function generateMeals(meals) {
       </div>`;
 
     if (meal.day === 'Monday') {
-      mondayHTML += mealHTML;
+      mondayHTML = mealHTML;
     } else if (meal.day === 'Tuesday') {
-      tuesdayHTML += mealHTML;
+      tuesdayHTML = mealHTML;
     } else if (meal.day === 'Wednesday') {
-      wednesdayHTML += mealHTML;
+      wednesdayHTML = mealHTML;
     } else if (meal.day === 'Thursday') {
-      thursdayHTML += mealHTML;
+      thursdayHTML = mealHTML;
     } else if (meal.day === 'Friday') {
-      fridayHTML += mealHTML;
+      fridayHTML = mealHTML;
     } else if (meal.day === 'Saturday') {
-      saturdayHTML += mealHTML;
+      saturdayHTML = mealHTML;
     } else if (meal.day === 'Sunday') {
-      sundayHTML += mealHTML;
+      sundayHTML = mealHTML;
     }
+
   });
 
   document.querySelector('#monday-panel').innerHTML = mondayHTML;
@@ -157,3 +168,12 @@ function clearCompleted(id) {
     }
   });
 }
+document.addEventListener('DOMContentLoaded', function () {
+
+  const panels = document.querySelectorAll('.panel');
+
+  panels.forEach(panel => {
+    panel.innerHTML = 'Your updated content here';
+  });
+
+});
