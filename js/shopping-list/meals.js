@@ -4,7 +4,10 @@ getMeals();
 
 // Submit data to Firebase
 function submitData(day) {
-  console.log('submit run');
+  
+  const dateWrapper = document.getElementById('date-wrap');
+  dateWrapper.classList.remove('active');
+
   const inputData = document.getElementById('meals-input').value;
 
   // Add data to the Firestore collection based on the selected day
@@ -15,6 +18,7 @@ function submitData(day) {
   })
     .then(() => {
       document.getElementById('meals-input').value = '';
+      snack();
     })
     .catch((error) => {
       console.error('Error submitting data: ', error);
@@ -72,17 +76,17 @@ function generateMeals(meals) {
     if (meal.day === 'Monday') {
       mondayHTML += mealHTML;
     } else if (meal.day === 'Tuesday') {
-      tuesdayHTML = mealHTML;
+      tuesdayHTML += mealHTML;
     } else if (meal.day === 'Wednesday') {
-      wednesdayHTML = mealHTML;
+      wednesdayHTML += mealHTML;
     } else if (meal.day === 'Thursday') {
-      thursdayHTML = mealHTML;
+      thursdayHTML += mealHTML;
     } else if (meal.day === 'Friday') {
-      fridayHTML = mealHTML;
+      fridayHTML += mealHTML;
     } else if (meal.day === 'Saturday') {
-      saturdayHTML = mealHTML;
+      saturdayHTML += mealHTML;
     } else if (meal.day === 'Sunday') {
-      sundayHTML = mealHTML;
+      sundayHTML += mealHTML;
     }
 
   });
