@@ -185,6 +185,7 @@ h2 {
   background-color: rgb(255, 221, 221);
   width: 100%;
   justify-content: center;
+  border-radius: 7px;
 }
 
 .clear-complete:hover .bin, .meals-complete:hover .bin {

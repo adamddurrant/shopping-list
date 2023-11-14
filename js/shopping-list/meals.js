@@ -38,26 +38,20 @@ function getMeals() {
     document.getElementById('meals-total').innerHTML = itemCount;
 
     generateMeals(mealItems);
+
   });
 }
 
 // take the data from getItems and add new HTML block
 function generateMeals(meals) {
 
-  const emptyHTML = `
-    <div class="meals-item">
-      <div class="shopping-item-text empty-meal">
-        No meals :(
-      </div>
-    </div>`;
-
-  let mondayHTML = emptyHTML;
-  let tuesdayHTML = emptyHTML;
-  let wednesdayHTML = emptyHTML;
-  let thursdayHTML = emptyHTML;
-  let fridayHTML = emptyHTML;
-  let saturdayHTML = emptyHTML;
-  let sundayHTML = emptyHTML;
+  let mondayHTML = '';
+  let tuesdayHTML = '';
+  let wednesdayHTML = '';
+  let thursdayHTML = '';
+  let fridayHTML = '';
+  let saturdayHTML = '';
+  let sundayHTML = '';
 
   meals.forEach((meal) => {
     const mealHTML = `
@@ -76,7 +70,7 @@ function generateMeals(meals) {
       </div>`;
 
     if (meal.day === 'Monday') {
-      mondayHTML = mealHTML;
+      mondayHTML += mealHTML;
     } else if (meal.day === 'Tuesday') {
       tuesdayHTML = mealHTML;
     } else if (meal.day === 'Wednesday') {
@@ -93,13 +87,20 @@ function generateMeals(meals) {
 
   });
 
-  document.querySelector('#monday-panel').innerHTML = mondayHTML;
-  document.querySelector('#tuesday-panel').innerHTML = tuesdayHTML;
-  document.querySelector('#wednesday-panel').innerHTML = wednesdayHTML;
-  document.querySelector('#thursday-panel').innerHTML = thursdayHTML;
-  document.querySelector('#friday-panel').innerHTML = fridayHTML;
-  document.querySelector('#saturday-panel').innerHTML = saturdayHTML;
-  document.querySelector('#sunday-panel').innerHTML = sundayHTML;
+  const emptyHTML = `
+  <div class="meals-item">
+    <div class="shopping-item-text empty-meal">
+      No meals :(
+    </div>
+  </div>`;
+
+  document.querySelector('#monday-panel').innerHTML = mondayHTML || emptyHTML;
+  document.querySelector('#tuesday-panel').innerHTML = tuesdayHTML || emptyHTML;
+  document.querySelector('#wednesday-panel').innerHTML = wednesdayHTML || emptyHTML;
+  document.querySelector('#thursday-panel').innerHTML = thursdayHTML || emptyHTML;
+  document.querySelector('#friday-panel').innerHTML = fridayHTML || emptyHTML;
+  document.querySelector('#saturday-panel').innerHTML = saturdayHTML || emptyHTML;
+  document.querySelector('#sunday-panel').innerHTML = sundayHTML || emptyHTML;
 
   // call event listener function
   createEventListeners();
