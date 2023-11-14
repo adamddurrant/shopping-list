@@ -51,7 +51,7 @@ function generateMeals(meals) {
 
   meals.forEach((meal) => {
     const mealHTML = `
-      <div class="shopping-item">
+      <div class="meals-item">
         <div class="check">
           <div data-id="${meal.id}" class="check-mark ${meal.filter == 'completed' ? 'checked' : ''}">
             <img src="/images/shopping-list/icon-check.svg" />
@@ -91,5 +91,69 @@ function generateMeals(meals) {
   document.querySelector('#sunday-panel').innerHTML = sundayHTML;
 
   // call event listener function
-  // createEventListeners();
+  createEventListeners();
+}
+
+//creates event listeners for each checkmark, delete button and clear button
+function createEventListeners() {
+  let mealsCheckMarks = document.querySelectorAll(
+    '.meals-list .check .check-mark'
+  );
+  let clear = document.querySelector('.meals-complete');
+
+  mealsCheckMarks.forEach((checkMark) => {
+    checkMark.addEventListener('click', function () {
+      markCompleted(checkMark.dataset.id);
+    });
+
+    //create function for clear button & run clearCompleted
+    clear.addEventListener('click', function () {
+      clearCompleted(checkMark.dataset.id);
+    });
+  });
+
+  let delItem = document.querySelectorAll('.meals-item .delete-item');
+  delItem.forEach((del) => {
+    del.addEventListener('click', function () {
+      deleteItem(del.dataset.id);
+    });
+  });
+}
+
+function deleteItem(id) {
+  let del = db.collection('meals-list').doc(id);
+  del.delete();
+}
+
+// Mark items as completed in database
+function markCompleted(id) {
+  let item = db.collection('meals-list').doc(id);
+  item.get().then(function (doc) {
+    if (doc.exists) {
+      let filter = doc.data().filter;
+      if (filter == 'active') {
+        item.update({
+          filter: 'completed',
+        });
+      } else if (filter == 'completed') {
+        item.update({
+          filter: 'active',
+        });
+      }
+    }
+  });
+}
+
+// clear the completed items from firebase
+function clearCompleted(id) {
+  let tb = db.collection('meals-list').doc(id);
+
+  tb.get().then(function (doc) {
+    if (doc.exists) {
+      let deleteFilter = doc.data().filter;
+      if (deleteFilter === 'completed') {
+        tb.delete();
+      }
+    }
+  });
 }
