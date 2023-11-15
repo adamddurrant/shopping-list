@@ -4,7 +4,7 @@ getMeals();
 
 // Submit data to Firebase
 function submitData(day) {
-  
+
   const dateWrapper = document.getElementById('date-wrap');
   dateWrapper.classList.remove('active');
 
@@ -68,7 +68,7 @@ function generateMeals(meals) {
         <div class="shopping-item-text ${meal.filter == 'completed' ? 'checked' : ''}">
           ${meal.text}
         </div>
-        <div data-id=${meal.id} class="delete-item">
+        <div data-id=${meal.id} class="delete-meal">
           <img src="/images/shopping-list/icon-cross.svg" alt="del-icon"></img>
         </div>
       </div>`;
@@ -107,52 +107,55 @@ function generateMeals(meals) {
   document.querySelector('#sunday-panel').innerHTML = sundayHTML || emptyHTML;
 
   // call event listener function
-  createEventListeners();
+  createMealEventListeners();
 }
 
 //creates event listeners for each checkmark, delete button and clear button
-function createEventListeners() {
+function createMealEventListeners() {
+
   let mealsCheckMarks = document.querySelectorAll(
     '.meals-list .check .check-mark'
   );
-  let clear = document.querySelector('.meals-complete');
 
-  mealsCheckMarks.forEach((checkMark) => {
-    checkMark.addEventListener('click', function () {
-      markCompleted(checkMark.dataset.id);
+  let mealClear = document.querySelector('.meals-complete');
+
+  mealsCheckMarks.forEach((mealCheckMark) => {
+    mealCheckMark.addEventListener('click', function () {
+      markMealCompleted(mealCheckMark.dataset.id);
     });
 
     //create function for clear button & run clearCompleted
-    clear.addEventListener('click', function () {
-      clearCompleted(checkMark.dataset.id);
+    mealClear.addEventListener('click', function () {
+      clearMealCompleted(mealCheckMark.dataset.id);
     });
+
   });
 
-  let delItem = document.querySelectorAll('.meals-item .delete-item');
-  delItem.forEach((del) => {
-    del.addEventListener('click', function () {
-      deleteItem(del.dataset.id);
+  let delMealItem = document.querySelectorAll('.meals-item .delete-meal');
+  delMealItem.forEach((delMeal) => {
+    delMeal.addEventListener('click', function () {
+      deleteMeal(delMeal.dataset.id);
     });
   });
 }
 
-function deleteItem(id) {
+function deleteMeal(id) {
   let del = db.collection('meals-list').doc(id);
   del.delete();
 }
 
 // Mark items as completed in database
-function markCompleted(id) {
-  let item = db.collection('meals-list').doc(id);
-  item.get().then(function (doc) {
+function markMealCompleted(id) {
+  let mealItem = db.collection('meals-list').doc(id);
+  mealItem.get().then(function (doc) {
     if (doc.exists) {
       let filter = doc.data().filter;
       if (filter == 'active') {
-        item.update({
+        mealItem.update({
           filter: 'completed',
         });
       } else if (filter == 'completed') {
-        item.update({
+        mealItem.update({
           filter: 'active',
         });
       }
@@ -161,7 +164,7 @@ function markCompleted(id) {
 }
 
 // clear the completed items from firebase
-function clearCompleted(id) {
+function clearMealCompleted(id) {
   let tb = db.collection('meals-list').doc(id);
 
   tb.get().then(function (doc) {
@@ -173,12 +176,3 @@ function clearCompleted(id) {
     }
   });
 }
-document.addEventListener('DOMContentLoaded', function () {
-
-  const panels = document.querySelectorAll('.panel');
-
-  panels.forEach(panel => {
-    panel.innerHTML = 'Your updated content here';
-  });
-
-});

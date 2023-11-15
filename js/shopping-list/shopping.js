@@ -79,6 +79,7 @@ function createEventListeners() {
   });
 
   let delItem = document.querySelectorAll('.shopping-item .delete-item');
+  console.log(delItem);
   delItem.forEach((del) => {
     del.addEventListener('click', function () {
       deleteItem(del.dataset.id);
