@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Hide and show the day buttons after input
 function handleInput(inputValue) {
-  
+
   document.getElementById("meals-input").focus();
 
   const dateWrapper = document.getElementById('date-wrap');
@@ -34,4 +34,14 @@ function handleInput(inputValue) {
     dateWrapper.classList.remove('active');
   });
 
+}
+
+// Enable buttons after selection
+function enableButtons() {
+  var dateButtons = document.querySelectorAll('.date-select .date');
+
+  // Enable all date buttons
+  dateButtons.forEach(function (button) {
+    button.disabled = false;
+  });
 }

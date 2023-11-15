@@ -23,6 +23,22 @@ body {
   background-color: white;
 }
 
+.meals-item {
+  order: 1; /* Set a default order value */
+}
+
+.one {
+  order: 1;
+}
+
+.two {
+  order: 2;
+}
+
+.three {
+  order: 3;
+}
+
 .shopping-header,
 .meals-header {
   position: absolute;
@@ -179,22 +195,6 @@ h1 {
   flex-direction: column;
 }
 
-.meals-item {
-  order: 1; /* Set a default order value */
-}
-
-.one {
-  order: 1;
-}
-
-.two {
-  order: 2;
-}
-
-.three {
-  order: 3;
-}
-
 .check-mark:hover,
 .check-mark.checked {
   background: black;
@@ -233,6 +233,21 @@ h1 {
   width: 100%;
   justify-content: center;
   border-radius: 7px;
+}
+
+#mealtime-list {
+  border: 0;
+  margin: 0 7px;
+  font-size: 17px;
+}
+
+#mealtime-list option {
+  font-size: 14px;
+}
+
+#mealtime-list:focus-visible {
+  border: 0;
+  outline: 0;
 }
 
 input::-webkit-calendar-picker-indicator {

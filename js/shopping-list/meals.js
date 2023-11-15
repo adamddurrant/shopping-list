@@ -7,11 +7,16 @@ function submitData(day) {
   const dateWrapper = document.getElementById('date-wrap');
   dateWrapper.classList.remove('active');
 
+  const selectElem = document.getElementById('mealtime-list');
+  const selectedOption = document.getElementById('mealtime-list').value;
   const inputData = document.getElementById('meals-input').value;
+  const concatenatedValue = selectedOption + inputData;
+
+  selectElem.selectedIndex = 0;
 
   // Add data to the Firestore collection based on the selected day
   db.collection('meals-list').add({
-    text: inputData,
+    text: concatenatedValue,
     filter: 'active',
     day: day
   })
@@ -109,6 +114,7 @@ function generateMeals(meals) {
   // call event listener function
   createMealEventListeners();
 
+  // Add classes for ordering
   const mealsText = document.querySelectorAll('.meals-item .meal-item-text');
   mealsText.forEach((mealText) => {
     const mealBaseText = mealText.innerText.toLowerCase();
