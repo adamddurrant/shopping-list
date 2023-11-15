@@ -18,6 +18,7 @@ function submitData(day) {
   })
     .then(() => {
       document.getElementById('meals-input').value = '';
+      document.getElementById("meals-input").focus();
       snack();
     })
     .catch((error) => {
@@ -108,6 +109,19 @@ function generateMeals(meals) {
 
   // call event listener function
   createMealEventListeners();
+
+  const mealsText = document.querySelectorAll('.meals-item .meal-item-text');
+  mealsText.forEach((mealText) => {
+    const mealBaseText = mealText.innerText.toLowerCase();
+    if (mealBaseText.includes('breakfast:')) {
+      mealText.parentNode.classList.add("one");
+    } else if (mealBaseText.includes('lunch:')) {
+      mealText.parentNode.classList.add("two");
+    } else if (mealBaseText.includes('dinner:')) {
+      mealText.parentNode.classList.add("three");
+    }
+  });
+
 }
 
 //creates event listeners for each checkmark, delete button and clear button
@@ -139,46 +153,6 @@ function createMealEventListeners() {
   });
 
 }
-
-// Order based on datalist selecton
-function orderMeals(panelId) {
-  var panel = document.querySelector(panelId);
-
-  var mealTypes = ['Breakfast:', 'Lunch:', 'Dinner:'];
-
-  // Handle Breakfast and Lunch
-  for (var typeIndex = 0; typeIndex < mealTypes.length - 1; typeIndex++) {
-    var mealType = mealTypes[typeIndex];
-
-    for (var i = 0; i < panel.children.length; i++) {
-      var child = panel.children[i];
-      var mealItemText = child.querySelector('.meal-item-text');
-
-      if (mealItemText && mealItemText.textContent.startsWith(mealType)) {
-        panel.insertBefore(child, panel.firstChild); // Breakfast: at the top
-      }
-    }
-  }
-
-  // Handle Dinner
-  for (var i = 0; i < panel.children.length; i++) {
-    var child = panel.children[i];
-    var mealItemText = child.querySelector('.meal-item-text');
-
-    if (mealItemText && mealItemText.textContent.startsWith('Dinner:')) {
-      panel.appendChild(child); // Dinner: at the end
-    }
-  }
-}
-
-// Call the function for each panel
-orderMeals('#monday-panel');
-orderMeals('#tuesday-panel');
-orderMeals('#wednesday-panel');
-orderMeals('#thursday-panel');
-orderMeals('#friday-panel');
-orderMeals('#saturday-panel');
-orderMeals('#sunday-panel');
 
 function deleteMeal(id) {
   let del = db.collection('meals-list').doc(id);
