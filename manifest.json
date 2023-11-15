@@ -5,8 +5,9 @@
   "background_color": "#ffcc33",
   "display": "browser",
   "orientation": "portrait",
+  "description": "Shopping and meal list app",
   "scope": "CRUD application",
-  "start_url": "https://shopping-list-pi-ten.vercel.app/",
+  "start_url": "/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
