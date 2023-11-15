@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Hide and show the day buttons after input
 function handleInput(inputValue) {
+  
+  document.getElementById("meals-input").focus();
 
   const dateWrapper = document.getElementById('date-wrap');
   const reset = document.getElementById('reset-meals');

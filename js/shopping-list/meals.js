@@ -4,7 +4,6 @@ getMeals();
 
 // Submit data to Firebase
 function submitData(day) {
-
   const dateWrapper = document.getElementById('date-wrap');
   dateWrapper.classList.remove('active');
 
