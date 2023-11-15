@@ -179,7 +179,7 @@ h1 {
   background: black;
 }
 
-.shopping-item-text.checked {
+.shopping-item-text.checked, .meal-item-text.checked {
   color: black;
   text-decoration: line-through;
 }
@@ -212,6 +212,10 @@ h1 {
   width: 100%;
   justify-content: center;
   border-radius: 7px;
+}
+
+input::-webkit-calendar-picker-indicator {
+  display: none!important;
 }
 
 .item-input {
@@ -285,7 +289,7 @@ h1 {
   border-color: black;
 }
 
-.shopping-item-text {
+.shopping-item-text, .meal-item-text {
   display: flex;
   align-items: center;
 }
