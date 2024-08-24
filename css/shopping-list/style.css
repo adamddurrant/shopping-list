@@ -10,6 +10,12 @@
   src: url("/fonts/Geist-Medium.woff2") format("woff2"),
 }
 
+@font-face {
+  font-family: "Geist Sans";
+  font-weight: 600;
+  src: url("/fonts/Geist-SemiBold.woff2") format("woff2"),
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -24,7 +30,8 @@ body {
 }
 
 .meals-item {
-  order: 1; /* Set a default order value */
+  order: 1;
+  /* Set a default order value */
 }
 
 .one {
@@ -40,7 +47,8 @@ body {
 }
 
 .shopping-header,
-.meals-header {
+.meals-header,
+.todo-header {
   position: absolute;
   top: 0;
   left: 0;
@@ -50,6 +58,12 @@ body {
   z-index: -1;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+}
+
+#to-do {
+  display: none;
+  transition: opacity 1s ease all;
+  opacity: 0;
 }
 
 #meals {
@@ -70,7 +84,7 @@ body {
 
 .tabs-content {
   height: 100vmax !important;
-  overflow: auto!important;
+  overflow: auto !important;
 }
 
 #switch {
@@ -101,19 +115,28 @@ body {
 .anim-shopping {
   width: 100px;
   height: 100px;
-  background-image: url(/images/shopping-list/food.gif);
+  background-image: url(/images/shopping-list/shopping.gif);
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 300px 300px;
+  background-size: 100px 100px;
 }
 
 .anim-meals {
   width: 100px;
   height: 100px;
-  background-image: url(/images/shopping-list/meals-list.gif);
+  background-image: url(/images/shopping-list/meals.gif);
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 300px 300px;
+  background-size: 100px 100px;
+}
+
+.anim-todo {
+  width: 100px;
+  height: 100px;
+  background-image: url(/images/shopping-list/to-do.gif);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
 }
 
 h1,
@@ -122,7 +145,7 @@ h2 {
   font-family: 'Geist Sans', sans-serif;
   font-size: 45px;
   font-style: normal;
-  font-weight: 500!important;
+  font-weight: 600 !important;
 }
 
 h1 {
@@ -138,12 +161,17 @@ h1 {
   background-color: #ffcc33;
 }
 
+.todo-header {
+  background-color: #33ff9b;
+}
+
 .meals-header {
-  background-color: #33b8ff;
+  background-color: #33daff;
 }
 
 .shopping-header img,
-.meals-header img {
+.meals-header img,
+.todo-header img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -200,7 +228,9 @@ h1 {
   background: black;
 }
 
-.shopping-item-text.checked, .meal-item-text.checked {
+.shopping-item-text.checked,
+.todo-item-text.checked,
+.meal-item-text.checked {
   color: black;
   text-decoration: line-through;
 }
@@ -221,7 +251,8 @@ h1 {
   margin-right: 4px;
 }
 
-.clear-complete, .meals-complete {
+.clear-complete,
+.meals-complete {
   display: flex;
   justify-content: flex-end;
   margin: auto;
@@ -251,7 +282,7 @@ h1 {
 }
 
 input::-webkit-calendar-picker-indicator {
-  display: none!important;
+  display: none !important;
 }
 
 .item-input {
@@ -306,7 +337,9 @@ input::-webkit-calendar-picker-indicator {
   color: hsl(233, 14%, 35%);
 }
 
-.shopping-item, .meals-item {
+.shopping-item,
+.todo-item,
+.meals-item {
   width: 100%;
   color: black;
   display: flex;
@@ -321,17 +354,22 @@ input::-webkit-calendar-picker-indicator {
   min-height: 70px;
 }
 
-.shopping-item:hover {
+.shopping-item:hover,
+.todo-item:hover {
   transform: translateY(-3px);
   border-color: black;
 }
 
-.shopping-item-text, .meal-item-text {
+.shopping-item-text,
+.meal-item-text,
+.todo-item-text {
   display: flex;
   align-items: center;
 }
 
-.shopping-list-wrapper, .meals-list-wrapper {
+.shopping-list-wrapper,
+.meals-list-wrapper,
+.todo-list-wrapper {
   margin-top: 10px;
   background-color: transparent;
   border-radius: 7px;
@@ -343,7 +381,8 @@ input::-webkit-calendar-picker-indicator {
   margin-top: 20px;
 }
 
-.items-info, .meals-items-info {
+.items-info,
+.meals-items-info {
   height: 70px;
   width: 100%;
   color: black;
@@ -372,18 +411,21 @@ input::-webkit-calendar-picker-indicator {
   justify-content: center;
 }
 
-.delete-item, .delete-meal {
+.delete-item,
+.delete-meal {
   margin-left: auto;
   display: flex;
   align-items: center;
 }
 
-.delete-item img, .delete-meal img {
+.delete-item img,
+.delete-meal img {
   width: 70%;
   margin-right: 30px;
 }
 
-.delete-item:hover, .delete-meal:hover {
+.delete-item:hover,
+.delete-meal:hover {
   cursor: pointer;
 }
 
@@ -391,22 +433,25 @@ input::-webkit-calendar-picker-indicator {
 @media (max-width: 480px) {
 
   .shopping-header,
-  .meals-header {
+  .meals-header,
+  .todo-header {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-}
+  }
 
-  .items-info, .meals-items-info {
+  .items-info,
+  .meals-items-info {
     flex-direction: column;
     margin-top: 50px;
   }
-  
+
   .meals-items-info {
     margin-top: 30px;
     margin-bottom: 50px;
   }
 
-  .clear-complete, .meals-complete {
+  .clear-complete,
+  .meals-complete {
     justify-content: center;
   }
 
@@ -426,7 +471,7 @@ input::-webkit-calendar-picker-indicator {
 
 .accordion {
   margin: 0 auto 15px auto;
-  background-color: transparent!important;
+  background-color: transparent !important;
   border: 2px solid black;
   border-radius: 7px;
   color: black;
@@ -527,22 +572,70 @@ input::-webkit-calendar-picker-indicator {
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+@keyframes pop {
+  0% {
+    transform: scale(1);
+    background-color: transparent;
+  }
+  50% {
+    transform: scale(1.05);
+    background-color: #e0ffe0;
+  }
+  100% {
+    transform: scale(1);
+    background-color: transparent;
+  }
+}
+
+.item-added-animation {
+  animation: pop 0.3s ease-out;
+}
+
+
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;} 
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }

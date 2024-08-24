@@ -1,18 +1,20 @@
 // Fetch items
 getItems();
 
-//shoot items into firebase on form submit
+// Shoot items into firebase on form submit
 function addItem(event) {
   event.preventDefault();
-  let text = document.getElementById('list-input');
-  db.collection('shopping-list').add({
-    text: text.value,
-    filter: 'active',
-  });
-  text.value = '';
+  let text = document.getElementById('shopping-list-input');
+  if (text && text.value) {
+    db.collection('shopping-list').add({
+      text: text.value,
+      filter: 'active',
+    });
+    text.value = '';
+  }
 }
 
-// get database list of shopping items
+// Get database list of shopping items
 function getItems() {
   db.collection('shopping-list').onSnapshot((snapshot) => {
     let items = [];
@@ -22,16 +24,17 @@ function getItems() {
         ...doc.data(),
       });
     });
-    // total number of items count
+    
     let itemCount = items.length;
-    // Add count of total items to total counter
-    document.getElementById('total').innerHTML = itemCount;
+    console.log('Total items:', itemCount); // Debugging log
+    document.getElementById('total').innerText = itemCount;
     generateItems(items);
   });
 }
 
-// take the data from getItems and add new HTML block
+// Take the data from getItems and add new HTML block
 function generateItems(items) {
+  console.log('Generating items:', items); // Debugging log
   let itemsHTML = '';
   items.forEach((item) => {
     itemsHTML += `
@@ -54,31 +57,28 @@ function generateItems(items) {
     </div>`;
   });
 
-  // add in the new HTML block
-  document.querySelector('.shopping-list').innerHTML = itemsHTML;
-  //call event listener function
+  document.querySelector('#shopping-list').innerHTML = itemsHTML;
   createEventListeners();
 }
 
-//creates event listeners for each checkmark, delete button and clear button
+// Creates event listeners for each checkmark, delete button, and clear button
 function createEventListeners() {
   let shoppingCheckMarks = document.querySelectorAll(
-    '.shopping-list .check .check-mark'
+    '#shopping-list .check .check-mark'
   );
-  let clear = document.querySelector('.clear-complete');
+  let clear = document.querySelector('.shopping-list-wrapper .clear-complete');
 
   shoppingCheckMarks.forEach((checkMark) => {
     checkMark.addEventListener('click', function () {
       markCompleted(checkMark.dataset.id);
     });
 
-    //create function for clear button & run clearCompleted
     clear.addEventListener('click', function () {
       clearCompleted(checkMark.dataset.id);
     });
   });
 
-  let delItem = document.querySelectorAll('.shopping-item .delete-item');
+  let delItem = document.querySelectorAll('#shopping-list .delete-item');
   delItem.forEach((del) => {
     del.addEventListener('click', function () {
       deleteItem(del.dataset.id);
@@ -110,10 +110,9 @@ function markCompleted(id) {
   });
 }
 
-// clear the completed items from firebase
+// Clear the completed items from firebase
 function clearCompleted(id) {
   let tb = db.collection('shopping-list').doc(id);
-
   tb.get().then(function (doc) {
     if (doc.exists) {
       let deleteFilter = doc.data().filter;
