@@ -5,11 +5,21 @@ getItems();
 function addItem(event) {
   event.preventDefault();
   let text = document.getElementById('shopping-list-input');
+  let confettiAnimation = document.getElementById('confetti'); // Get the Lottie animation element
+
   if (text && text.value) {
+    // Add item to Firebase
     db.collection('shopping-list').add({
       text: text.value,
       filter: 'active',
     });
+
+    // Reset the animation to the first frame and then play it
+    confettiAnimation.stop(); 
+    confettiAnimation.seek(0);
+    confettiAnimation.play();  
+
+    // Clear the input field after submission
     text.value = '';
   }
 }
@@ -24,7 +34,7 @@ function getItems() {
         ...doc.data(),
       });
     });
-    
+
     let itemCount = items.length;
     console.log('Total items:', itemCount); // Debugging log
     document.getElementById('total').innerText = itemCount;

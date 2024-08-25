@@ -3,12 +3,23 @@ getTodoItems();
 
 // Shoot items into firebase on form submit
 function addTodoItem(event) {
+
   event.preventDefault();
+
   let text = document.getElementById('todo-list-input');
+  let confettiAnimation = document.getElementById('confetti-todo');
+
   db.collection('todo-list').add({
     text: text.value,
     filter: 'active',
   });
+
+  // Reset the animation to the first frame and then play it
+  confettiAnimation.stop();
+  confettiAnimation.seek(0);
+  confettiAnimation.play();
+
+
   text.value = '';
 }
 
@@ -37,14 +48,12 @@ function generateTodoItems(items) {
     itemsHTML += `
       <div class="todo-item">
       <div class="check">
-        <div data-id="${item.id}" class="check-mark ${
-      item.filter == 'completed' ? 'checked' : ''
-    }">
+        <div data-id="${item.id}" class="check-mark ${item.filter == 'completed' ? 'checked' : ''
+      }">
           <img src="/images/shopping-list/icon-check.svg" />
         </div>
       </div>
-      <div class="todo-item-text ${
-        item.filter == 'completed' ? 'checked' : ''
+      <div class="todo-item-text ${item.filter == 'completed' ? 'checked' : ''
       }">
         ${item.text}
       </div>

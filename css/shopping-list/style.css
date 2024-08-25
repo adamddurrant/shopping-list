@@ -197,6 +197,7 @@ h1 {
   margin-top: 10px;
   border-radius: 7px;
   display: flex;
+  position: relative;
 }
 
 .check {
@@ -381,6 +382,18 @@ input::-webkit-calendar-picker-indicator {
   margin-top: 20px;
 }
 
+#confetti, 
+#confetti-todo {
+  position: absolute;
+  top: -170px;
+  z-index: -1;
+  bottom: 0;
+  left: -20px;
+  right: 0;
+  width: 400px;
+  height: 250px;
+}
+
 .items-info,
 .meals-items-info {
   height: 70px;
@@ -392,6 +405,7 @@ input::-webkit-calendar-picker-indicator {
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
+  margin-bottom: 40px;
 }
 
 .filter {
