@@ -1,6 +1,8 @@
 {
   "name": "Shopping & Meals List App",
   "short_name": "Shopping List",
+   "start_url": "/index.html",
+   "orientation": "portrait",
   "icons": [
     {
       "src": "./images/icons/icon-192x192.png",
