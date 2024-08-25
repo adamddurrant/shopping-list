@@ -1,4 +1,7 @@
 function hide(page) {
+
+  localStorage.setItem('currentPage', page); // Save current selection to local storage
+
   if (page === 'shopping') {
     document.getElementById('shopping').style.display = 'block';
     document.getElementById('shopping').style.opacity = '1';

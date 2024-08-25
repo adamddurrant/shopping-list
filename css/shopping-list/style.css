@@ -383,7 +383,8 @@ input::-webkit-calendar-picker-indicator {
 }
 
 #confetti, 
-#confetti-todo {
+#confetti-todo, 
+#confetti-meals {
   position: absolute;
   top: -170px;
   z-index: -1;

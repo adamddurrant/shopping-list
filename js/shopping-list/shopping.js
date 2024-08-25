@@ -1,7 +1,9 @@
 // Fetch items
-getItems();
+document.addEventListener("DOMContentLoaded", (event) => {
+  getItems();
+});
 
-// Shoot items into firebase on form submit
+// Shoot items into Firebase on form submit
 function addItem(event) {
   event.preventDefault();
   let text = document.getElementById('shopping-list-input');
@@ -15,9 +17,9 @@ function addItem(event) {
     });
 
     // Reset the animation to the first frame and then play it
-    confettiAnimation.stop(); 
+    confettiAnimation.stop();
     confettiAnimation.seek(0);
-    confettiAnimation.play();  
+    confettiAnimation.play();
 
     // Clear the input field after submission
     text.value = '';
@@ -46,29 +48,44 @@ function getItems() {
 function generateItems(items) {
   console.log('Generating items:', items); // Debugging log
   let itemsHTML = '';
-  items.forEach((item) => {
-    itemsHTML += `
-      <div class="shopping-item">
-      <div class="check">
-        <div data-id="${item.id}" class="check-mark ${
-      item.filter == 'completed' ? 'checked' : ''
-    }">
-          <img src="/images/shopping-list/icon-check.svg" />
-        </div>
-      </div>
-      <div class="shopping-item-text ${
+
+  if (items.length > 0) {
+    items.forEach((item) => {
+      itemsHTML += `
+        <div class="shopping-item">
+          <div class="check">
+            <div data-id="${item.id}" class="check-mark ${
         item.filter == 'completed' ? 'checked' : ''
       }">
-        ${item.text}
-      </div>
-      <div data-id=${item.id} class="delete-item">
-                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon"></img>
-                </div>
-    </div>`;
-  });
+              <img src="/images/shopping-list/icon-check.svg" />
+            </div>
+          </div>
+          <div class="shopping-item-text ${
+            item.filter == 'completed' ? 'checked' : ''
+          }">
+            ${item.text}
+          </div>
+          <div data-id=${item.id} class="delete-item">
+            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon"></img>
+          </div>
+        </div>`;
+    });
+  } else {
+    // No items, show the empty template
+    itemsHTML = `
+      <div class="meals-item">
+        <div class="shopping-item-text empty-meal">
+          No Items :(
+        </div>
+      </div>`;
+  }
 
   document.querySelector('#shopping-list').innerHTML = itemsHTML;
-  createEventListeners();
+
+  // Only create event listeners if there are items
+  if (items.length > 0) {
+    createEventListeners();
+  }
 }
 
 // Creates event listeners for each checkmark, delete button, and clear button
@@ -96,6 +113,7 @@ function createEventListeners() {
   });
 }
 
+// Delete an item from the database
 function deleteItem(id) {
   let del = db.collection('shopping-list').doc(id);
   del.delete();
@@ -120,7 +138,7 @@ function markCompleted(id) {
   });
 }
 
-// Clear the completed items from firebase
+// Clear the completed items from Firebase
 function clearCompleted(id) {
   let tb = db.collection('shopping-list').doc(id);
   tb.get().then(function (doc) {

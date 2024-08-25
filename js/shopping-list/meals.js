@@ -1,11 +1,14 @@
 
 // Fetch items
-getMeals();
+document.addEventListener("DOMContentLoaded", (event) => {
+  getMeals();
+});
 
 // Submit data to Firebase
 function submitData(day) {
   const dateWrapper = document.getElementById('date-wrap');
   dateWrapper.classList.remove('active');
+  let confettiAnimation = document.getElementById('confetti-meals');
 
   const selectElem = document.getElementById('mealtime-list');
   const selectedOption = document.getElementById('mealtime-list').value;
@@ -23,14 +26,18 @@ function submitData(day) {
     .then(() => {
       document.getElementById('meals-input').value = '';
       document.getElementById("meals-input").focus();
-      snack();
     })
     .catch((error) => {
       console.error('Error submitting data: ', error);
     });
+
+  // Reset the animation to the first frame and then play it
+  confettiAnimation.stop();
+  confettiAnimation.seek(0);
+  confettiAnimation.play();
 }
 
-// get database list of shopping items
+// get database list of meal items
 function getMeals() {
   db.collection('meals-list').onSnapshot((snapshot) => {
     let mealItems = [];

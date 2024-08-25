@@ -1,9 +1,10 @@
 // Fetch todo items
-getTodoItems();
+document.addEventListener("DOMContentLoaded", (event) => {
+  getTodoItems();
+});
 
 // Shoot items into firebase on form submit
 function addTodoItem(event) {
-
   event.preventDefault();
 
   let text = document.getElementById('todo-list-input');
@@ -18,7 +19,6 @@ function addTodoItem(event) {
   confettiAnimation.stop();
   confettiAnimation.seek(0);
   confettiAnimation.play();
-
 
   text.value = '';
 }
@@ -44,36 +44,46 @@ function getTodoItems() {
 // Take the data from getTodoItems and add new HTML block
 function generateTodoItems(items) {
   let itemsHTML = '';
-  items.forEach((item) => {
-    itemsHTML += `
-      <div class="todo-item">
-      <div class="check">
-        <div data-id="${item.id}" class="check-mark ${item.filter == 'completed' ? 'checked' : ''
-      }">
-          <img src="/images/shopping-list/icon-check.svg" />
-        </div>
-      </div>
-      <div class="todo-item-text ${item.filter == 'completed' ? 'checked' : ''
-      }">
-        ${item.text}
-      </div>
-      <div data-id=${item.id} class="delete-item">
-                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon"></img>
-                </div>
-    </div>`;
-  });
 
-  // add in the new HTML block
+  if (items.length > 0) {
+    items.forEach((item) => {
+      itemsHTML += `
+        <div class="todo-item">
+          <div class="check">
+            <div data-id="${item.id}" class="check-mark ${item.filter == 'completed' ? 'checked' : ''}">
+              <img src="/images/shopping-list/icon-check.svg" />
+            </div>
+          </div>
+          <div class="todo-item-text ${item.filter == 'completed' ? 'checked' : ''}">
+            ${item.text}
+          </div>
+          <div data-id=${item.id} class="delete-item">
+            <img src="/images/shopping-list/icon-cross.svg" alt="del-icon"></img>
+          </div>
+        </div>`;
+    });
+  } else {
+    // No items, show the empty template
+    itemsHTML = `
+      <div class="meals-item">
+        <div class="shopping-item-text empty-meal">
+          No Items :(
+        </div>
+      </div>`;
+  }
+
+  // Add the HTML block to the DOM
   document.querySelector('#todo-list').innerHTML = itemsHTML;
-  //call event listener function
-  createTodoEventListeners();
+
+  // Call event listener function if there are items
+  if (items.length > 0) {
+    createTodoEventListeners();
+  }
 }
 
-//creates event listeners for each checkmark, delete button and clear button in todo
+// Creates event listeners for each checkmark, delete button, and clear button in todo
 function createTodoEventListeners() {
-  let todoCheckMarks = document.querySelectorAll(
-    '#todo-list .check .check-mark'
-  );
+  let todoCheckMarks = document.querySelectorAll('#todo-list .check .check-mark');
   let clear = document.querySelector('.todo-list-wrapper .clear-complete');
 
   todoCheckMarks.forEach((checkMark) => {
@@ -81,7 +91,7 @@ function createTodoEventListeners() {
       markTodoCompleted(checkMark.dataset.id);
     });
 
-    //create function for clear button & run clearCompleted
+    // Create function for clear button & run clearCompleted
     clear.addEventListener('click', function () {
       clearTodoCompleted(checkMark.dataset.id);
     });
@@ -95,12 +105,13 @@ function createTodoEventListeners() {
   });
 }
 
+// Delete a todo item from the database
 function deleteTodoItem(id) {
   let del = db.collection('todo-list').doc(id);
   del.delete();
 }
 
-// Mark todo items as completed in database
+// Mark todo items as completed in the database
 function markTodoCompleted(id) {
   let item = db.collection('todo-list').doc(id);
   item.get().then(function (doc) {
@@ -119,7 +130,7 @@ function markTodoCompleted(id) {
   });
 }
 
-// Clear the completed todo items from firebase
+// Clear the completed todo items from Firebase
 function clearTodoCompleted(id) {
   let tb = db.collection('todo-list').doc(id);
 
