@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="robots" content="noindex">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="/css/shopping-list/style.css">
+    <link rel="icon" sizes="192x192" href="/images/shopping-list/mobile-icon.png">
+    <title>Adam & Helena's Lists</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="/js/shopping-list/firebase.js"></script>
+    <script src="/js/shopping-list/shopping.js"></script>
+    <script src="/js/shopping-list/meals.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?l=dataLayer&amp;id=G-S1R4PX27JD" async=""></script>
+    <script src="/js/shopping-list/accordion.js"></script>
+    <script src="/js/shopping-list/dates.js"></script>
+    <script src="/js/shopping-list/snackbar.js"></script>
+    <script src="/js/shopping-list/switch.js"></script>
+    <script src="/js/shopping-list/todo.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?l=dataLayer&amp;id=G-S1R4PX27JD" async=""></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load saved screen from local storage
+            const currentPage = localStorage.getItem('currentPage') || 'shopping';
+            hide(currentPage);
+        });
+    </script>
+
+</head>
+
+<body cz-shortcut-listen="true">
+
+    <!-- Shopping screen -->
+    <div id="shopping" class="col s12" style="display: block; opacity: 1;">
+        <header class="shopping-header"></header>
+        <div class="container">
+            <div class="anim-wrapper">
+                <div class="anim-shopping"></div>
+            </div>
+            <div class="title">
+                <h1 class="browser-default">Shopping List</h1>
+                <a href="#" id="switch" onclick="hide('todo')"></a>
+            </div>
+
+            <div class="create-item">
+                <lottie-player id="confetti"
+                    src="https://lottie.host/83f9f34f-f913-46d6-a75f-b46f380ed25f/BHGBYudnZW.json"
+                    background="transparent"></lottie-player>
+                <div class="check">
+                    <div class="emoji">👉</div>
+                </div>
+                <div class="item-input">
+                    <form id="shopping-form" onsubmit="addItem(event)">
+                        <input id="shopping-list-input" type="text" class="browser-default" placeholder="Add items...">
+                        <button id="reset" type="reset" class="reset-button browser-default">Clear</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="shopping-list-wrapper">
+                <div id="shopping-list" class="shopping-list">
+                    <!-- Shopping items -->
+                </div>
+
+                <div class="items-info">
+                    <div class="items-number"><span id="total">2</span> items</div>
+                    <div class="controls">
+                        <span class="clear-complete"><img class="bin" src="/images/shopping-list/bin.svg">Clear
+                            Completed</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- To do screen -->
+    <div id="to-do" class="col s12" style="display: none; opacity: 0;">
+        <header class="todo-header"></header>
+        <div class="container">
+            <div class="anim-wrapper">
+                <div class="anim-todo"></div>
+            </div>
+            <div class="title">
+                <h1 class="browser-default">To Do List</h1>
+                <a href="#" id="switch" onclick="hide('meals')"></a>
+            </div>
+
+            <div class="create-item">
+                <lottie-player id="confetti-todo"
+                    src="https://lottie.host/83f9f34f-f913-46d6-a75f-b46f380ed25f/BHGBYudnZW.json"
+                    background="transparent"></lottie-player>
+                <div class="check">
+                    <div class="emoji">👉</div>
+                </div>
+                <div class="item-input">
+                    <form id="todo-form" onsubmit="addTodoItem(event)">
+                        <input id="todo-list-input" type="text" class="browser-default" placeholder="Add items...">
+                        <button id="reset-todo" type="reset" class="reset-button browser-default">Clear</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="todo-list-wrapper">
+                <div id="todo-list" class="todo-list">
+                    <!-- To do items -->
+                </div>
+
+                <div class="items-info">
+                    <div class="items-number"><span id="todo-total">5</span> items</div>
+                    <div class="controls">
+                        <span class="clear-complete"><img class="bin" src="/images/shopping-list/bin.svg">Clear
+                            Completed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meals screen -->
+
+    <div id="meals" class="col s12" style="display: none; opacity: 0;">
+
+        <header class="meals-header"></header>
+        <div class="container">
+            <div class="anim-wrapper">
+                <div class="anim-meals"></div>
+            </div>
+            <div class="title">
+                <h1 class="browser-default">Meals List</h1>
+                <a href="#" id="switch" onclick="hide('shopping');"></a>
+            </div>
+
+            <div class="create-item">
+                <lottie-player id="confetti-meals"
+                    src="https://lottie.host/83f9f34f-f913-46d6-a75f-b46f380ed25f/BHGBYudnZW.json"
+                    background="transparent"></lottie-player>
+                <div class="item-input">
+
+                    <form id="meals-form" onsubmit="event.preventDefault();">
+                        <select name="mealtime" id="mealtime-list" onchange="enableButtons()">
+                            <option value="" disabled="" selected="">Mealtime</option>
+                            <option value="Breakfast: ">Breakfast</option>
+                            <option value="Lunch: ">Lunch</option>
+                            <option value="Dinner: ">Dinner</option>
+                        </select>
+                        <input id="meals-input" type="text" list="mealtime-list" class="browser-default"
+                            placeholder="Add meals..." oninput="handleInput(this.value)">
+                        <button id="reset-meals" type="reset" class="reset-button browser-default">Clear</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="date-wrap" class="date-wrapper">
+                <h4 class="date-text">
+                    Select day to submit...
+                </h4>
+                <div class="date-select" id="dateSelect">
+
+                    <button class="date browser-default" onclick="submitData('Saturday')" disabled="">Sat</button>
+                    <button class="date browser-default" onclick="submitData('Sunday')" disabled="">Sun</button>
+                    <button class="date browser-default" onclick="submitData('Monday')" disabled="">Mon</button><button
+                        class="date browser-default" onclick="submitData('Tuesday')" disabled="">Tue</button><button
+                        class="date browser-default" onclick="submitData('Wednesday')" disabled="">Wed</button><button
+                        class="date browser-default" onclick="submitData('Thursday')" disabled="">Thu</button><button
+                        class="date browser-default" onclick="submitData('Friday')" disabled="">Fri</button>
+                </div>
+
+            </div>
+
+            <div class="meals-list-wrapper">
+                <div class="meals-list">
+                    <button id="sunday" class="accordion browser-default">Sunday</button>
+                    <div id="sunday-panel" class="panel">
+                        <div class="meals-item three">
+                            <div class="check">
+                                <div data-id="YJojaZRsahFYhH7mbACm" class="check-mark checked">
+                                    <img src="/images/shopping-list/icon-check.svg">
+                                </div>
+                            </div>
+                            <div class="meal-item-text checked">
+                                Dinner: Pork shoulder steaks
+                            </div>
+                            <div data-id="YJojaZRsahFYhH7mbACm" class="delete-meal">
+                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="monday" class="accordion browser-default">Monday</button>
+                    <div id="monday-panel" class="panel">
+                        <div class="meals-item three">
+                            <div class="check">
+                                <div data-id="rqCorapw9DafuI8EE89l" class="check-mark ">
+                                    <img src="/images/shopping-list/icon-check.svg">
+                                </div>
+                            </div>
+                            <div class="meal-item-text ">
+                                Dinner: Homemade Nandos
+                            </div>
+                            <div data-id="rqCorapw9DafuI8EE89l" class="delete-meal">
+                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
+                            </div>
+                        </div>
+                    </div><button id="tuesday" class="accordion browser-default">Tuesday</button>
+                    <div id="tuesday-panel" class="panel">
+                        <div class="meals-item three">
+                            <div class="check">
+                                <div data-id="ZqHlA28dRGC8XRGBafka" class="check-mark ">
+                                    <img src="/images/shopping-list/icon-check.svg">
+                                </div>
+                            </div>
+                            <div class="meal-item-text ">
+                                Dinner: Mackerel
+                            </div>
+                            <div data-id="ZqHlA28dRGC8XRGBafka" class="delete-meal">
+                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
+                            </div>
+                        </div>
+                    </div><button id="wednesday" class="accordion browser-default">Wednesday</button>
+                    <div id="wednesday-panel" class="panel">
+                        <div class="meals-item three">
+                            <div class="check">
+                                <div data-id="HGxmNM9ypa4J60faQW3k" class="check-mark ">
+                                    <img src="/images/shopping-list/icon-check.svg">
+                                </div>
+                            </div>
+                            <div class="meal-item-text ">
+                                Dinner: Roast chicken
+                            </div>
+                            <div data-id="HGxmNM9ypa4J60faQW3k" class="delete-meal">
+                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
+                            </div>
+                        </div>
+                    </div><button id="thursday" class="accordion browser-default">Thursday</button>
+                    <div id="thursday-panel" class="panel">
+                        <div class="meals-item three">
+                            <div class="check">
+                                <div data-id="F9q3AvrJ6phEF29DPdwv" class="check-mark ">
+                                    <img src="/images/shopping-list/icon-check.svg">
+                                </div>
+                            </div>
+                            <div class="meal-item-text ">
+                                Dinner: Pizza/salad
+                            </div>
+                            <div data-id="F9q3AvrJ6phEF29DPdwv" class="delete-meal">
+                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
+                            </div>
+                        </div>
+                    </div><button id="friday" class="accordion browser-default">Friday</button>
+                    <div id="friday-panel" class="panel">
+                        <div class="meals-item three">
+                            <div class="check">
+                                <div data-id="5IgFXaoiXCEqHADBYGYW" class="check-mark ">
+                                    <img src="/images/shopping-list/icon-check.svg">
+                                </div>
+                            </div>
+                            <div class="meal-item-text ">
+                                Dinner: Steak
+                            </div>
+                            <div data-id="5IgFXaoiXCEqHADBYGYW" class="delete-meal">
+                                <img src="/images/shopping-list/icon-cross.svg" alt="del-icon">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="saturday" class="accordion browser-default">Saturday</button>
+                    <div id="saturday-panel" class="panel">
+                        <div class="meals-item">
+                            <div class="shopping-item-text empty-meal">
+                                No meals :(
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="meals-items-info">
+                    <div class="items-number"><span id="meals-total">6</span> items</div>
+                    <div class="controls">
+                        <span class="meals-complete"><img class="bin" src="/images/shopping-list/bin.svg">Clear
+                            Completed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
