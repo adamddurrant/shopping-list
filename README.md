@@ -8,7 +8,7 @@ I wanted to learn how to build a live app that retains it's data in a database a
 
 ## Screenshot
 
-![screenshot](/images/screenshot.png)
+![screenshot](/images/shopping-list-image.jpg)
 
 ## Features
 
